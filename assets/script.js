@@ -25,35 +25,35 @@ const bannerTxt = document.querySelector("#banner > p");
 const totalSlides = slides.length;
 
 let i = 0;
-let timer;
+let timerSlide = setInterval(timer, 3000);
 
-timerSlide();
+//____________Flèche gauche____________
 
-arrowLeft.addEventListener("click", function(){
-	clearTimeout(timer);
+arrowLeft.addEventListener("click", function(){	
+	clearInterval(timerSlide)
 	if (i === 0) {
 		i = totalSlides - 1;
 	}
 	else {
 		i--;
 	}moveSlide();
-	timerSlide();
+	timerSlide = setInterval(timer, 3000);	
 });
 
-arrowRight.addEventListener("click", function(){
-	clearTimeout(timer);
+//____________Flèche droite____________
+
+arrowRight.addEventListener("click", function(){	
+	clearInterval(timerSlide)
 	if (i === totalSlides -1){
 		i = 0;		
 	}
 	else {
 		i++;
 	}moveSlide();
-	timerSlide();
+	timerSlide = setInterval(timer, 3000);	
 });
 
-
-//_________Fonction_______ //
-
+//_________Fonctions_______ //
 
 //Changement image et tagline selon l'indice de [slides]
 function moveSlide(){
@@ -62,26 +62,21 @@ function moveSlide(){
 	linkDot();
 }
 
-//Suppression et ajout de la class "dot_selected : les " 
+//Suppression et ajout de la class "dot_selected : permet de lier les dots aux slides" 
 function linkDot(){
-	const link = document.getElementsByClassName("dot");
+	const link = document.getElementsByClassName("dot");	
 	for (let i = 0; i < link.length; i++){
 		link[i].classList.remove("dot_selected");		
 	}
 	link[i].classList.add("dot_selected");
 }
 
-
-//Timer des slides
-function timerSlide(){
-	timer = setTimeout(function(){
-		if (i === totalSlides -1){
-			i = 0;
-		}
-		else{
-			i++
-		}
-		moveSlide();
-		timerSlide();
-	},3000);
+function timer (){	
+	if (i === totalSlides -1) {
+		i = 0;
+	  }
+	  else{
+		i++;
+	  }
+	  moveSlide();
 }
