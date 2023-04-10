@@ -137,8 +137,7 @@ header {
 .dots {
 	position: absolute;
 	bottom: 40px;
-	display: flex;
-	cursor: pointer;
+	display: flex;	
 }
 .dot {
 	margin-inline: 5px;
@@ -147,7 +146,8 @@ header {
 	background-color: #ffffff00;
 	border: 3px solid #fff;
 	border-radius: 100%;
-	box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);;
+	box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+	cursor: pointer;
 }
 .dot-selected {
 	background-color: #fff;
