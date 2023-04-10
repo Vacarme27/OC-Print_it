@@ -138,6 +138,7 @@ header {
 	position: absolute;
 	bottom: 40px;
 	display: flex;
+	cursor: pointer;
 }
 .dot {
 	margin-inline: 5px;
@@ -148,7 +149,7 @@ header {
 	border-radius: 100%;
 	box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);;
 }
-.dot_selected {
+.dot-selected {
 	background-color: #fff;
 }
 /* Fin du code CSS pour le carousel */

@@ -36,8 +36,9 @@ arrowLeft.addEventListener("click", function(){
 	}
 	else {
 		i--;
-	}moveSlide();
-	timerSlide = setInterval(timer, 3000);	
+	}
+	moveSlide();
+	timerSlide = setInterval(timer, 3000);
 });
 
 //____________Flèche droite____________
@@ -53,30 +54,48 @@ arrowRight.addEventListener("click", function(){
 	timerSlide = setInterval(timer, 3000);	
 });
 
+//___________Clique Dot___________
+
+// On appelle la fonction clickDot lorsqu'on clique sur un dot
+const dots = document.querySelectorAll(".dot");
+for (let j = 0; j < dots.length; j++){
+	dots[j].addEventListener("click", clickDot);
+}
+
 //_________Fonctions_______ //
 
 //Changement image et tagline selon l'indice de [slides]
 function moveSlide(){
 	bannerImg.src = `assets/images/slideshow/${slides[i].image}`;
 	bannerTxt.innerHTML = slides[i].tagLine;
-	linkDot();
+	linkDot();	
 }
 
 //Suppression et ajout de la class "dot_selected : permet de lier les dots aux slides" 
 function linkDot(){
 	const link = document.getElementsByClassName("dot");	
-	for (let i = 0; i < link.length; i++){
-		link[i].classList.remove("dot_selected");		
+	for (let i = 0; i < link.length; i++){		
+		link[i].classList.remove("dot-selected");
 	}
-	link[i].classList.add("dot_selected");
+	link[i].classList.add("dot-selected");	
 }
 
+//On lie le click d'un dot à l'indice correspondant à l'image grâce à l'attribut "data-imageindex" et change la valeur de "i"
+function clickDot(clickEvent){
+	clearInterval(timerSlide);
+	const dot = clickEvent.target;
+	i = parseInt(dot.dataset.imageindex);//parseInt permet de transformer une chaîne de caractères en entier
+	moveSlide();
+	timerSlide = setInterval(timer, 3000);
+}
+
+//Fonction qui determine les conditions du "setInterval", ce qui permet de boucler le défilement du carrousel
 function timer (){	
 	if (i === totalSlides -1) {
 		i = 0;
-	  }
-	  else{
+	}
+	else{
 		i++;
-	  }
-	  moveSlide();
+	}
+	moveSlide();
 }
